@@ -7,10 +7,6 @@ Create symlinks:
     ln -s ~/.vim/vimrc ~/.vimrc
     ln -s ~/.vim/gvimrc ~/.gvimrc
 
-Install vundle:
-
-    git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-
 Switch to the `~/.vim` directory, and fetch submodules:
 
     cd ~/.vim
