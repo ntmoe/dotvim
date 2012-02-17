@@ -11,7 +11,13 @@ Install vundle:
 
     git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
-Install packages
+Switch to the `~/.vim` directory, and fetch submodules:
+
+    cd ~/.vim
+    git submodule init
+    git submodule update
+
+Install packages in Vim with Vundle:
 
     $ vim
     :BundleInstall
