@@ -14,8 +14,8 @@ Install vundle:
 Switch to the `~/.vim` directory, and fetch submodules:
 
     cd ~/.vim
-    git submodule init
-    git submodule update
+    git submodule init bundle/vundle
+    git submodule update bundle/vundle
 
 Install packages in Vim with Vundle:
 
