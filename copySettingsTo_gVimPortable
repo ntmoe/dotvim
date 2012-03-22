@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cp -Rf ~/.vim/* $CYGDRV/PortableApps/gVimPortable/Data/settings/vimfiles/.
+
+cp -f $CYGDRV/PortableApps/gVimPortable/Data/settings/vimfiles/vimrc $CYGDRV/PortableApps/gVimPortable/Data/settings/_vimrc
+
+cp -f $CYGDRV/PortableApps/gVimPortable/Data/settings/vimfiles/gvimrc $CYGDRV/PortableApps/gVimPortable/Data/settings/_gvimrc
