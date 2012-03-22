@@ -1,11 +1,11 @@
 set nocompatible
 syntax enable         " Turn on syntax highlighting allowing local overrides
 filetype off
-" if has('win32')
-" "  set rtp+=~/vimfiles/bundle/vundle/
-" else
+if has('win32')
+  set rtp+=~/vimfiles/bundle/vundle/
+else
   set rtp+=~/.vim/bundle/vundle/
-" endif
+endif
 call vundle#rc()
 Bundle 'gmarik/vundle'
 " Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
