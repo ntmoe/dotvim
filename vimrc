@@ -1,7 +1,9 @@
 set nocompatible
 syntax enable         " Turn on syntax highlighting allowing local overrides
 filetype off
-if has('win32')
+if exists('portable')
+  set rtp+=~/.vim/bundle/vundle/
+elseif has('win32')
   set rtp+=~/vimfiles/bundle/vundle/
 else
   set rtp+=~/.vim/bundle/vundle/
