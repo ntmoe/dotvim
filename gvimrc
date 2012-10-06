@@ -1,7 +1,9 @@
 if has('win32')
   set guifont=DejaVu\ Sans\ Mono:h12
+elseif has('mac')
+  set guifont=Menlo:h12
 else
-  set guifont=DejaVu\ Sans\ Mono:h14
+  set guifont=DejaVu\ Sans\ Mono:h12
 endif
 
 " Configure syntax highlighting of hex values
