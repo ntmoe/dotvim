@@ -21,7 +21,7 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'tpope/vim-surround'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'msanders/snipmate.vim'
-Bundle 'AutoClose'
+Bundle 'Townk/vim-autoclose'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'scrooloose/nerdtree'
@@ -41,45 +41,14 @@ endfunc
 ""
 
 " Some file types should wrap their text
-function! s:setupWrapping()
+" See http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
+function! SetupWrapping()
   set wrap
   set linebreak
-  set textwidth=72
+  set textwidth=0
+  set wrapmargin=0
   set nolist
 endfunction
-
-""
-"" File types
-""
-
-filetype plugin indent on " Turn on filetype plugins (:help filetype-plugin)
-
-if has("autocmd")
-  " In Makefiles, use real tabs, not tabs expanded to spaces
-  au FileType make set noexpandtab
-
-  " This actually might be confusing, but the plugin +ruby+ already does
-  " this, so we want to do it only if the plugin +ruby+ is disabled for
-  " some reason
-  " if janus#is_plugin_disabled("ruby")
-      " Set the Ruby filetype for a number of common Ruby files without .rb
-  "   au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,Procfile,config.ru,*.rake} set ft=ruby
-  " endif
-
-  " Make sure all mardown files have the correct filetype set and setup wrapping
-  au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown | call s:setupWrapping()
-
-  " Treat JSON files like JavaScript
-  au BufNewFile,BufRead *.json set ft=javascript
-
-  " make Python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
-  au FileType python set softtabstop=4 tabstop=4 shiftwidth=4 textwidth=79
-
-  " Remember last location in file, but not for commit messages.
-  " see :help last-position-jump
-  au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
-    \| exe "normal! g`\"" | endif
-endif
 
 if has("gui_running")
   if has("autocmd")
@@ -103,7 +72,7 @@ if exists("+breakindent")
     setlocal breakindent
 endif
 
-set wrap
+" set wrap
 " set nowrap                      " don't wrap lines
 set tabstop=2                     " a tab is two spaces
 set shiftwidth=2                  " an autoindent (with <<) is two spaces
@@ -194,3 +163,38 @@ map <leader>c <c-_><c-_>
 
 " Saves time; maps the spacebar to colon
 nmap <space> :
+
+""
+"" File types
+""
+
+filetype plugin indent on " Turn on filetype plugins (:help filetype-plugin)
+
+if has("autocmd")
+  " In Makefiles, use real tabs, not tabs expanded to spaces
+  au FileType make set noexpandtab
+
+  " This actually might be confusing, but the plugin +ruby+ already does
+  " this, so we want to do it only if the plugin +ruby+ is disabled for
+  " some reason
+  " if janus#is_plugin_disabled("ruby")
+      " Set the Ruby filetype for a number of common Ruby files without .rb
+  "   au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,Procfile,config.ru,*.rake} set ft=ruby
+  " endif
+
+  " Make sure all markdown files have the correct filetype set and setup wrapping
+  au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} setf markdown | call s:setupWrapping()
+
+  au BufRead,BufNewFile *.{tex,txt} call SetupWrapping()
+
+  " Treat JSON files like JavaScript
+  au BufNewFile,BufRead *.json set ft=javascript
+
+  " make Python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
+  au FileType python set softtabstop=4 tabstop=4 shiftwidth=4 textwidth=79
+
+  " Remember last location in file, but not for commit messages.
+  " see :help last-position-jump
+  au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal! g`\"" | endif
+endif
