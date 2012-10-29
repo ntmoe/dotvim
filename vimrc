@@ -69,17 +69,19 @@ set encoding=utf-8    " Set default encoding to UTF-8
 "" Whitespace
 ""
 if exists("+breakindent")
-    setlocal breakindent
+    set breakindent
 endif
 
 " set wrap
 " set nowrap                      " don't wrap lines
-set tabstop=2                     " a tab is two spaces
+" set tabstop=2                     " a tab is two spaces
 set shiftwidth=2                  " an autoindent (with <<) is two spaces
+set softtabstop=2
 set expandtab                     " use spaces, not tabs
 set list                          " Show invisible characters
 set backspace=indent,eol,start    " backspace through everything in insert mode
 set fileformat=unix
+set nojoinspaces                  " Prevent vim from inserting a second space when joining lines
 
 if exists("g:enable_mvim_shift_arrow")
   let macvim_hig_shift_movement = 1 " mvim shift-arrow-keys
@@ -98,7 +100,7 @@ set listchars+=precedes:<         " The character to show in the last column whe
 "" Searching
 ""
 
-set hlsearch    " highlight matches
+" set hlsearch    " highlight matches
 set incsearch   " incremental searching
 set ignorecase  " searches are case insensitive...
 set smartcase   " ... unless they contain at least one capital letter
@@ -107,8 +109,8 @@ set smartcase   " ... unless they contain at least one capital letter
 "" Backup and swap files
 ""
 
-set backupdir=~/.vim/_backup//    " where to put backup files.
-set directory=~/.vim/_temp//      " where to put swap files.
+set backupdir=~/.vim/_backup    " where to put backup files.
+set directory=~/.vim/_temp      " where to put swap files.
 
 ""
 "" Status line settings
@@ -127,9 +129,9 @@ if has("statusline") && !&cp
 
   " Finish the statusline
   set statusline+=Line:%l/%L[%p%%]
-  set statusline+=Col:%v
-  set statusline+=Buf:#%n
-  set statusline+=[%b][0x%B]
+  set statusline+=\ Col:%v
+  set statusline+=\ Buf:#%n
+  set statusline+=\ Char:[%b][0x%B]
 endif
 
 ""
