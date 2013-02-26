@@ -21,7 +21,7 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'tpope/vim-surround'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'msanders/snipmate.vim'
-Bundle 'Townk/vim-autoclose'
+" Bundle 'Townk/vim-autoclose'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'scrooloose/nerdtree'
@@ -200,4 +200,11 @@ if has("autocmd")
   " see :help last-position-jump
   au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g`\"" | endif
+endif
+
+" Set up Lilypond plugin, indent mode, and syntax-highlighting
+if has('mac')
+  filetype off
+  set runtimepath+=/Applications/LilyPond.app/Contents/Resources/share/lilypond/current/vim
+  filetype on
 endif
