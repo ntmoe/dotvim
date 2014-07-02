@@ -2,29 +2,30 @@ set nocompatible
 syntax enable         " Turn on syntax highlighting allowing local overrides
 filetype off
 if exists('portable')
-  set rtp+=~/.vim/bundle/vundle/
+  set rtp+=~/.vim/bundle/Vundle.vim
 elseif has('win32')
-  set rtp+=~/vimfiles/bundle/vundle/
+  set rtp+=~/vimfiles/bundle/Vundle.vim
 else
-  set rtp+=~/.vim/bundle/vundle/
+  set rtp+=~/.vim/bundle/Vundle.vim
 endif
-call vundle#rc()
-Bundle 'gmarik/vundle'
-" Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Bundle 'othree/html5.vim'
-" Bundle 'hail2u/vim-css3-syntax'
-Bundle 'skammer/vim-css-color'
-" Bundle 'vim-scripts/TuttiColori-Colorscheme'
-Bundle 'hexHighlight.vim'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'tpope/vim-surround'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'msanders/snipmate.vim'
-" Bundle 'Townk/vim-autoclose'
-Bundle 'plasticboy/vim-markdown'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'scrooloose/nerdtree'
+call vundle#begin()
+Plugin 'gmarik/vundle'
+" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Plugin 'othree/html5.vim'
+" Plugin 'hail2u/vim-css3-syntax'
+Plugin 'skammer/vim-css-color'
+" Plugin 'vim-scripts/TuttiColori-Colorscheme'
+Plugin 'hexHighlight.vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'tpope/vim-surround'
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'msanders/snipmate.vim'
+" Plugin 'Townk/vim-autoclose'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'scrooloose/nerdtree'
+call vundle#end()
 filetype plugin indent on
 
 " Show syntax highlighting groups for word under cursor
