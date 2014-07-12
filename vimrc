@@ -209,3 +209,6 @@ if has('mac')
   set runtimepath+=/Applications/LilyPond.app/Contents/Resources/share/lilypond/current/vim
   filetype on
 endif
+
+" Set up make
+set makeprg=gcc\ -Wall\ -o\ %:r\ %
