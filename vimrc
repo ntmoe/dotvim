@@ -225,5 +225,6 @@ autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 
 " Abbreviations to make constructing boxes for C comments easier
-:abbr #b /************************************************
-:abbr #e ************************************************/
+:abbr #b /********************************************************
+    " When on the last line of the box, we need to back up one space
+:abbr #e <Backspace>*******************************************************/
