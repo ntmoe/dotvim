@@ -10,9 +10,9 @@ Create symlinks:
 Switch to the `~/.vim` directory, and install Vundle:
 
     cd ~/.vim
-    git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+    $ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 Install packages in Vim with Vundle:
 
     $ vim
-    :BundleInstall
+    :PluginInstall
