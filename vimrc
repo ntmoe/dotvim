@@ -9,7 +9,7 @@ else
   set rtp+=~/.vim/bundle/Vundle.vim
 endif
 call vundle#begin()
-Plugin 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 " Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Plugin 'othree/html5.vim'
 " Plugin 'hail2u/vim-css3-syntax'
