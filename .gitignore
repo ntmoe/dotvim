@@ -1,3 +1,4 @@
 # Lines starting with '#' are considered comments.
 autoload/plug.vim
 plugged
+*.swp
