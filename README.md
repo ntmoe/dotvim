@@ -8,7 +8,7 @@ Create symlinks:
     ln -s ~/.vim/gvimrc ~/.gvimrc
 ```
 
-Switch to the `~/.vim` directory, and install Vundle:
+Switch to the `~/.vim` directory, and install Vim-Plug:
 ```
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
