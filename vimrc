@@ -1,62 +1,57 @@
-set nocompatible
-syntax enable         " Turn on syntax highlighting allowing local overrides
-filetype off
-if exists('portable')
-  set rtp+=~/.vim/bundle/Vundle.vim
-elseif has('win32')
-  set rtp+=~/vimfiles/bundle/Vundle.vim
-else
-  set rtp+=~/.vim/bundle/Vundle.vim
-endif
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
-" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Plugin 'othree/html5.vim'
-" Plugin 'hail2u/vim-css3-syntax'
-Plugin 'skammer/vim-css-color'
-" Plugin 'vim-scripts/TuttiColori-Colorscheme'
-Plugin 'hexHighlight.vim'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'tpope/vim-surround'
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-Plugin 'msanders/snipmate.vim'
-" Plugin 'Townk/vim-autoclose'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'scrooloose/nerdtree'
-call vundle#end()
-filetype plugin indent on
+"""
+""" vim-plug
+"""
 
-" Show syntax highlighting groups for word under cursor
-nmap <C-S-P> :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
+" Specify a directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+
+" Make sure you use single quotes
+
+" Shorthand notation; fetches https://github.com/altercation/solarized
+Plug 'altercation/solarized', { 'rtp': 'vim-colors-solarized' }
+
+" Markdown plugins
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+
+" LaTeX
+Plug 'lervag/vimtex'
+
+" Initialize plugin system
+call plug#end()
+
+filetype plugin indent on " Turn on filetype plugins (:help filetype-plugin) 
 
 ""
-"" Helpers
+"" Key Mappings
 ""
 
-" Some file types should wrap their text
-" See http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
-function! SetupWrapping()
-  set wrap
-  set linebreak
-  set textwidth=0
-  set wrapmargin=0
-  set nolist
-endfunction
+" Map escape key to jj -- much faster
+imap jj <esc>
 
-if has("gui_running")
-  if has("autocmd")
-    " Automatically resize splits when resizing MacVim window
-    autocmd VimResized * wincmd =
-  endif
+" Saves time; maps the spacebar to colon
+nmap <space> :
+
+
+""
+"" Mouse for Terminal Mode
+""
+
+" Enable the mouse, but don't change the settings if this is a GUI.
+if has('mouse') && !has('gui_running')
+  set mouse=a
 endif
+
+
+""
+"" Color scheme settings
+""
+
+set background=dark
+colorscheme solarized
+
 
 ""
 "" Basic Setup
@@ -84,10 +79,6 @@ set backspace=indent,eol,start    " backspace through everything in insert mode
 set fileformat=unix
 set nojoinspaces                  " Prevent vim from inserting a second space when joining lines
 
-if exists("g:enable_mvim_shift_arrow")
-  let macvim_hig_shift_movement = 1 " mvim shift-arrow-keys
-endif
-
 " List chars
 set listchars=""                  " Reset the listchars
 set listchars=tab:\ \             " a tab should display as "  ", trailing whitespace as "."
@@ -110,8 +101,8 @@ set smartcase   " ... unless they contain at least one capital letter
 "" Backup and swap files
 ""
 
-set backupdir=~/.vim/_backup    " where to put backup files.
-set directory=~/.vim/_temp      " where to put swap files.
+" set backupdir=~/.vim/_backup    " where to put backup files.
+" set directory=~/.vim/_temp      " where to put swap files.
 
 ""
 "" Status line settings
@@ -135,20 +126,6 @@ if has("statusline") && !&cp
   set statusline+=\ Char:[%b][0x%B]
 endif
 
-""
-"" Color scheme settings
-""
-
-set background=dark
-colorscheme solarized
-
-""
-"" Enable the mouse, but don't change the settings if this is a GUI.
-""
-
-if has('mouse') && !has('gui_running')
-  set mouse=a
-endif
 
 " Source the vimrc file after saving it. This way, you don't have to reload
 " Vim to see the changes.
@@ -156,25 +133,58 @@ if has("autocmd")
   autocmd bufwritepost .vimrc source $MYVIMRC
 endif
 
-" Map escape key to jj -- much faster
-imap jj <esc>
 
 "" Markdown to HTML
-nmap <leader>md :%!/usr/local/bin/Markdown.pl --html4tags <cr>
+" nmap <leader>md :%!/usr/local/bin/Markdown.pl --html4tags <cr>
 
 " Faster shortcut for commenting. Requires T-Comment plugin
-map <leader>c <c-_><c-_>
+" map <leader>c <c-_><c-_>
 
-" Saves time; maps the spacebar to colon
-nmap <space> :
+
+""
+"" Markdown (plasticboy/vim-markdown)
+""
+
+" Disable the folding configuration for Markdown
+let g:vim_markdown_folding_disabled = 0
+
+" To enable/disable folding use Vim's standard folding configuration.
+" set [no]foldenable
+
+" Fold in a style like python-mode
+" let g:vim_markdown_folding_style_pythonic = 1
+
+" Prevent foldtext from being set
+let g:vim_markdown_override_foldtext = 0
+
+" Set header folding level
+" Folding level is a number between 1 and 6. By default, if not specified, it
+" is set to 1.
+let g:vim_markdown_folding_level = 1
+
+"""
+""" LaTeX (verlag/vimtex)
+"""
+
+" Set the viewer method.
+let g:vimtex_view_method = 'skim'
+
 
 ""
 "" File types
 ""
 
-filetype plugin indent on " Turn on filetype plugins (:help filetype-plugin)
-
 if has("autocmd")
+  " Some file types should wrap their text
+  " See http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
+  function! SetupWrapping()
+    set wrap
+    set linebreak
+    set textwidth=0
+    set wrapmargin=0
+    set nolist
+  endfunction
+
   " In Makefiles, use real tabs, not tabs expanded to spaces
   au FileType make set noexpandtab
 
@@ -187,20 +197,20 @@ if has("autocmd")
   " endif
 
   " Make sure all markdown files have the correct filetype set and setup wrapping
-  au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} setf markdown | call s:setupWrapping()
-
-  au BufRead,BufNewFile *.{tex,txt} call SetupWrapping()
+  au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} setf markdown | call SetupWrapping()
+  
+  " au BufRead,BufNewFile *.{tex,txt} call SetupWrapping()
 
   " Treat JSON files like JavaScript
-  au BufNewFile,BufRead *.json set ft=javascript
+  " au BufNewFile,BufRead *.json set ft=javascript
 
   " make Python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
   au FileType python set softtabstop=4 tabstop=4 shiftwidth=4 textwidth=79
 
   " Remember last location in file, but not for commit messages.
   " see :help last-position-jump
-  au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
-    \| exe "normal! g`\"" | endif
+  " au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
+  "   \| exe "normal! g`\"" | endif
 endif
 
 " Set up Lilypond plugin, indent mode, and syntax-highlighting
@@ -214,13 +224,13 @@ endif
 set makeprg=gcc\ -Wall\ -o\ %:r\ %
 
 " Automatically open, but do not go to (if there are errors) the quickfix /
-" location list window, or close it when is has become empty. 
+" location list window, or close it when is has become empty.
 "
 " Note: Must allow nesting of autocmds to enable any customizations for quickfix
-" buffers. 
+" buffers.
 " Note: Normally, :cwindow jumps to the quickfix window if the command opens it
 " (but not if it's already open). However, as part of the autocmd, this doesn't
-" seem to happen. 
+" seem to happen.
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 
