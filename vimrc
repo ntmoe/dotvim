@@ -199,7 +199,7 @@ if has("autocmd")
   " Make sure all markdown files have the correct filetype set and setup wrapping
   au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} setf markdown | call SetupWrapping()
   
-  " au BufRead,BufNewFile *.{tex,txt} call SetupWrapping()
+  au BufRead,BufNewFile *.{tex,txt} call SetupWrapping()
 
   " Treat JSON files like JavaScript
   " au BufNewFile,BufRead *.json set ft=javascript
