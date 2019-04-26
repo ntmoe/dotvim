@@ -14,7 +14,7 @@ Switch to the `~/.vim` directory, and install Vim-Plug:
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
-Install packages in Vim with Vundle:
+Install packages in Vim with vim-plug:
 ```
     $ vim
     :PlugInstall
