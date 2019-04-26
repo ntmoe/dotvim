@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/Users/ntmoe/nDrive Folder/PROJECTS/Other Projects/CEGFGN11 Big Blue SCADA/Design Documents and Data/SCADA/doc'
+let g:netrw_dirhist_2='/Users/ntmoe/nDrive Folder/PROJECTS/Other Projects/CEGFGN11 Big Blue SCADA/Design Documents and Data/SCADA/doc/build'
+let g:netrw_dirhist_3='/Users/ntmoe/nDrive Folder/PROJECTS/Other Projects/CEGFGN11 Big Blue SCADA/Design Documents and Data/SCADA/doc/build/html'
+let g:netrw_dirhist_4='/Users/ntmoe/nDrive Folder/PROJECTS/Other Projects/CEGFGN11 Big Blue SCADA/Design Documents and Data/SCADA/doc/source'

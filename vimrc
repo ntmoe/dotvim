@@ -12,12 +12,21 @@ call plug#begin('~/.vim/plugged')
 " Shorthand notation; fetches https://github.com/altercation/solarized
 Plug 'altercation/solarized', { 'rtp': 'vim-colors-solarized' }
 
-" Markdown plugins
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
+" NERDTree
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " LaTeX
 Plug 'lervag/vimtex'
+
+" VIM Table Mode
+Plug 'dhruvasagar/vim-table-mode'
+
+" vim-crbasic
+Plug 'bearnik/vim-crbasic'
+
+" extline
+Plug 'drmikehenry/vim-extline'
 
 " Initialize plugin system
 call plug#end()
@@ -201,6 +210,9 @@ if has("autocmd")
   
   au BufRead,BufNewFile *.{tex,txt} call SetupWrapping()
 
+  " Set syntax highlighting for CRBasic files
+  au BufRead,BufNewFile *.{CR300,cr1,cr6} set filetype=freebasic
+
   " Treat JSON files like JavaScript
   " au BufNewFile,BufRead *.json set ft=javascript
 
@@ -238,3 +250,14 @@ autocmd QuickFixCmdPost    l* nested lwindow
 :abbr #b /********************************************************
     " When on the last line of the box, we need to back up one space
 :abbr #e <Backspace>*******************************************************/
+
+" Options for VIM Table Mode
+let g:table_mode_corner_corner='+'
+let g:table_mode_header_fillchar='='
+
+" Options for netrw to make it work like NERDtree
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_winsize = 25
+
