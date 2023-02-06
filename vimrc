@@ -36,6 +36,11 @@ call plug#end()
 
 filetype plugin indent on " Turn on filetype plugins (:help filetype-plugin) 
 
+" This enables Vim's and neovim's syntax-related features. Without this, some
+" VimTeX features will not work (see ":help vimtex-requirements" for more
+" info).
+syntax enable
+
 ""
 "" Key Mappings
 ""
