@@ -31,6 +31,9 @@ Plug 'drmikehenry/vim-extline'
 " vimspector
 Plug 'puremourning/vimspector'
 
+" vim-surround
+Plug 'tpope/vim-surround'
+
 " Initialize plugin system
 call plug#end()
 
