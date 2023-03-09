@@ -276,5 +276,5 @@ let g:netrw_winsize = 25
 let g:vimspector_enable_mappings = 'HUMAN'
 
 " vim-surround commands for reStructuredText italics and bold
-autocmd FileType markdown,octopress let b:surround_{char2nr('i')} = "*\r*"
-autocmd FileType markdown,octopress let b:surround_{char2nr('b')} = "**\r**"
+autocmd FileType rst,text,markdown,octopress let b:surround_{char2nr('i')} = "*\r*"
+autocmd FileType rst,text,markdown,octopress let b:surround_{char2nr('b')} = "**\r**"
