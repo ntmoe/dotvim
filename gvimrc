@@ -2,6 +2,14 @@ if has('win32')
   set guifont=DejaVu\ Sans\ Mono:h10
 elseif has('mac')
   set guifont=Menlo:h12
+  " Configure touch bar
+  " Pushes the full-screen butten over to the right so I don't accidentally
+  " touch it when I go to press escape
+  " From https://github.com/macvim-dev/macvim/issues/1175#issuecomment-796113914
+  an 1.1 TouchBar.-flexspace1- <Nop>
+  " NERDTree toggle
+  " From https://gist.github.com/mdennehy/8f373a235222a1e8a6adaaad164a1ba8
+  an icon=NSTouchBarSidebarTemplate TouchBar.NerdTree :NERDTreeToggle<CR>
 else
   set guifont=DejaVu\ Sans\ Mono:h12
 endif

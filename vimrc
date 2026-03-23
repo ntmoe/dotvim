@@ -34,6 +34,11 @@ Plug 'puremourning/vimspector'
 " vim-surround
 Plug 'tpope/vim-surround'
 
+" UltiSnips
+Plug 'SirVer/ultisnips'
+
+
+
 " Initialize plugin system
 call plug#end()
 
@@ -187,7 +192,10 @@ let g:vim_markdown_folding_level = 1
 """
 
 " Set the viewer method.
+let g:tex_flavor='latex' " Default tex file format
 let g:vimtex_view_method = 'skim'
+let g:vimtex_view_skim_sync = 1
+let g:vimtex_view_skim_activate = 1
 
 
 ""
@@ -278,3 +286,15 @@ let g:vimspector_enable_mappings = 'HUMAN'
 " vim-surround commands for reStructuredText italics and bold
 autocmd FileType rst,text,markdown,octopress let b:surround_{char2nr('i')} = "*\r*"
 autocmd FileType rst,text,markdown,octopress let b:surround_{char2nr('b')} = "**\r**"
+
+" UltiSnips configuration
+let g:UltiSnipsExpandTrigger       = '<Tab>'    " use Tab to expand snippets
+let g:UltiSnipsJumpForwardTrigger  = '<Tab>'    " use Tab to move forward through tabstops
+let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'  " use Shift-Tab to move backward through tabstops
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
+" nmap <leader>w :w<cr> | :call UltiSnips#RefreshSnippets() " Save current file and refresh UltiSnips
+
+" Automatically change the current working directory so NERDTree opens to the
+" current working directory
+
+set autochdir

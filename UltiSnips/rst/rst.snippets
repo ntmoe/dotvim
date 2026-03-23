@@ -1,0 +1,30 @@
+snippet gu "Create a guilabel role" 
+:guilabel:\`$1\`$2
+endsnippet
+
+snippet mns "Create a string of menu selections"
+:menuselection:\`$1\`$2
+endsnippet
+
+snippet sa "Create literal text that can have emphasized variables"
+:samp:\`$1\`$2
+endsnippet
+
+snippet kb "Mark a sequence of keystrokes"
+:kbd:\`$1\`$2
+endsnippet
+
+global !p
+
+def text_after_cursor_matches(snip, string):
+  (line, col) = snip.cursor
+  text_after_cursor = snip.buffer[line][col:]
+  return re.match(string, text_after_cursor)
+
+endglobal
+
+# Do this only from within the menuselection role
+context text_after_cursor_matches(snip, ".*`")
+snippet "(:menuselection:`.*)  " "Create a menu separator" rA
+`!p snip.rv = match.group(1)` --> $1
+endsnippet
