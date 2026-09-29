@@ -37,6 +37,9 @@ Plug 'tpope/vim-surround'
 " UltiSnips
 Plug 'SirVer/ultisnips'
 
+" vim-rst
+Plug 'habamax/vim-rst'
+
 
 
 " Initialize plugin system
